@@ -84,6 +84,7 @@ describe("Test for Word API", () => {
     });
   });
 
+  // Uncomment and fix the following test if the functionality is ready
   // describe("POST /words/test/:wordId", () => {
   //   it("should save test score for a word", async () => {
   //     const mockWord = await Word.create({

@@ -1,11 +1,16 @@
 import Word from "../models/word.model.js";
-import User from "../models/user.model.js";
+import User from "../models/user.model.js"; // Import the User model
 
-export const findWordInDatabase = async (word) => {
+export const findWordInDatabase = async (query) => {
+  const regexQuery = new RegExp(query, "i"); // Case-insensitive search
+
   return await Word.find({
-    word: {
-      $regex: new RegExp(`\\b${word}\\b`, "i"),
-    },
+    $or: [
+      { word: regexQuery },
+      { root: regexQuery },
+      { skeleton: regexQuery },
+      { meanings: { $elemMatch: { $regex: regexQuery } } },
+    ],
   });
 };
 

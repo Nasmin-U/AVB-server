@@ -5,7 +5,8 @@ import userRoutes from "./src/routes/user.route.js";
 import wordRoutes from "./src/routes/word.route.js";
 import cors from "cors";
 
-dotenv.config();
+const envFile = `.env.${process.env.NODE_ENV}` || ".env";
+dotenv.config({ path: envFile });
 
 const app = express();
 
