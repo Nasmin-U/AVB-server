@@ -5,7 +5,7 @@ import userRoutes from "./src/routes/user.route.js";
 import wordRoutes from "./src/routes/word.route.js";
 import cors from "cors";
 
-dotenv.config({ path: `.env.${process.env.NODE_ENV || "development"}` });
+dotenv.config();
 
 const app = express();
 
@@ -16,9 +16,6 @@ app.use(cors());
 
 app.use("/users", userRoutes);
 app.use("/words", wordRoutes);
-app.get("/", (req, res) => {
-  res.send("Welcome to the Arabic Vocabulary Builder API");
-});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

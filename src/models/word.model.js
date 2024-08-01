@@ -6,9 +6,21 @@ const wordSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  translation: {
+  root: {
     type: String,
-    required: true,
+    default: "",
+  },
+  skeleton: {
+    type: String,
+    default: "",
+  },
+  wikiLink: {
+    type: String,
+    default: "",
+  },
+  meanings: {
+    type: [String],
+    default: [],
   },
   pronunciation: {
     type: String,
@@ -18,34 +30,6 @@ const wordSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
-  root: {
-    type: String,
-    default: "",
-  },
-  definition: {
-    type: String,
-    default: "",
-  },
-  users: [
-    {
-      userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
-      testScores: [
-        {
-          date: {
-            type: Date,
-            default: Date.now,
-          },
-          score: {
-            type: Number,
-            required: true,
-          },
-        },
-      ],
-    },
-  ],
 });
 
 const Word = mongoose.model("Word", wordSchema);

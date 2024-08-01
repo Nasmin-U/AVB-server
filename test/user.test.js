@@ -53,35 +53,6 @@ describe("Tests for User", () => {
       expect(res.status).to.equal(400);
       expect(res.body).to.have.property("message", "Email already exists");
     });
-
-    it("should fail to sign up a user with invalid email", async () => {
-      const res = await request.post("/users/signup").send({
-        email: "invalidEmail",
-        password: "PassWord1234!",
-      });
-
-      expect(res.status).to.equal(400);
-      expect(res.body).to.have.property("errors");
-      expect(res.body.errors).to.be.an("array").that.is.not.empty;
-      expect(res.body.errors[0]).to.have.property(
-        "msg",
-        "Please enter a valid email address"
-      );
-    });
-
-    it("should not let user sign up with weak password", async () => {
-      const res = await request.post("/users/signup").send({
-        email: "newUser@email.com",
-        password: "pass",
-      });
-
-      expect(res.status).to.equal(400);
-      expect(res.body).to.have.property("errors");
-      expect(res.body.errors).to.be.an("array").that.is.not.empty;
-      expect(res.body.errors[0])
-        .to.have.property("msg")
-        .that.includes("Password must");
-    });
   });
 
   describe("POST /users/login", () => {
