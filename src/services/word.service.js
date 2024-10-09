@@ -1,8 +1,8 @@
 import Word from "../models/word.model.js";
-import User from "../models/user.model.js"; // Import the User model
+import User from "../models/user.model.js"; 
 
 export const findWordInDatabase = async (query) => {
-  const regexQuery = new RegExp(query, "i"); // Case-insensitive search
+  const regexQuery = new RegExp(query, "i"); 
 
   return await Word.find({
     $or: [
